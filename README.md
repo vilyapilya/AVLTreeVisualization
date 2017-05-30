@@ -46,16 +46,8 @@ display.js: this script will handle the logic for creating and updating the nece
 
 tree.js: this script will handle the users' iput and the tree rotations
 
-Implementaion Timeline:
-* Day 1: Setup all necessary Node modules, including getting webpack up and running and Easel.js installed. Create webpack.config.js as well as package.json. Write a basic entry file and the bare bones of all 3 scripts outlined above. Learn the basics of Easel.js. Goals for the day:
-
-Get a green bundle with webpack
-Learn enough Easel.js to render an object to the Canvas element
-* Day 2: Write AVL tree logic
-* Day 3: Integrade users' input with the written algorithm and write animation for the nodes.
-
 ## Bonus:
-* Add finding functionality. 
+* Add finding functionality.
 
 # Binary Heap
 ## Background
@@ -64,7 +56,7 @@ A binary heap is defined as a binary tree with two additional constraints:
 Shape property: a binary heap is a complete binary tree; that is, all levels of the tree, except possibly the last one (deepest) are fully filled, and, if the last level of the tree is not complete, the nodes of that level are filled from left to right.
 Heap property: the key stored in each node is either greater than or equal to (≥) or less than or equal to (≤) the keys in the node's children, according to some total order.
 ![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/heapRepresentaion.JPG)
-The UI for this part of the application will look same as for the AVL tree. 
+The UI for this part of the application will look same as for the AVL tree.
 ### Insertion
 Insertion a number to a heap will take the following steps:
 1. The number will be inserted into the first available spot starting from the left.
@@ -75,3 +67,16 @@ Insertion a number to a heap will take the following steps:
 2. The hole will be filled by the last entry in the tree
 3. Then that entry will bubble down until the heap-order property is satisfied
 ![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/HeapRemoval.JPG)
+
+Implementaion Timeline:
+* Day 1: Setup all necessary Node modules, including getting webpack up and running and Easel.js installed. Create webpack.config.js as well as package.json. Write a basic entry file and the bare bones of all 3 scripts outlined above. Learn the basics of Easel.js. Goals for the day:
+
+Get a green bundle with webpack
+Learn enough Easel.js to render an object to the Canvas element
+
+* Day 2: Write AVL tree and Binary Heap logic Goals for the day:
+Get insertion and deletion work in console for both data structures.
+
+* Day 3: Integrade users' input with the written algorithm and write animation for the nodes.
+Goal for the day:
+Animate insertion and deletion process for both data structures.
