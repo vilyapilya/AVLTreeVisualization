@@ -5,7 +5,7 @@ AVL trees are often compared with red–black trees because both support the sam
 
 
 This is a rough draft of how the application will look like:
-![alt text] (https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/wireframe.JPG)
+![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/wireframe.JPG)
 ## Insertion
 Users insert a number into the input field. If they insert the number for the first time or they have reseted the application, the tree is empty. The first number is placed on the root of the tree. The following numbers will be inserted according the following rules:
 
