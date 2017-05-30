@@ -3,6 +3,24 @@ In computer science, an AVL tree is a self-balancing binary search tree. It was 
 The AVL tree is named after its two Soviet inventors, Georgy Adelson-Velsky and Evgenii Landis, who published it in their 1962 paper "An algorithm for the organization of information".[3]
 AVL trees are often compared with red–black trees because both support the same set of operations and take O(log n) time for the basic operations. For lookup-intensive applications, AVL trees are faster than red–black trees because they are more strictly balanced.[4] Similar to red–black trees, AVL trees are height-balanced. Both are, in general, neither weight-balanced nor μ-balanced for any μ≤1⁄2;[5] that is, sibling nodes can have hugely differing numbers of descendants.
 
+
+This is a rough draft of how the application will look like:
+![alt text] (https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/wireframe.JPG)
+## Insertion
+Users insert a number into the input field. If they insert the number for the first time or they have reseted the application, the tree is empty. The first number is placed on the root of the tree. The following numbers will be inserted according the following rules:
+
+1. First the number will take a place according to Binary Search Tree rules.
+2. Then, if the tree becomes unbalanced, it performs one of the rotations depending on the unbalanced case. The following images illustrate all possible cases and type of rotaion for each of them:
+![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/firstThreeCases.JPG)
+![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/forthCase.JPG)
+
+## Deletion
+User will be able to delete a number from the tree by hovering and clicking on a cross symbol which will appear on hover. The tree will behave according the same rules as for insertion.
+
+## Examples
+![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/insertion.JPG)
+![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/deletion.JPG)
+
 # Functionality and MVP
 The visualization will have the following functionality:
 * Accept users' input. (a number)
@@ -35,4 +53,4 @@ Learn enough Easel.js to render an object to the Canvas element
 * Day 3: Integrade users' input with the written algorithm and write animation for the nodes.
 
 # Bonus:
--Add finding functionality. 
+* Add finding functionality. 
