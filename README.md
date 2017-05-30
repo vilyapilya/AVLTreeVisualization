@@ -68,7 +68,7 @@ Insertion a number to a heap will take the following steps:
 3. Then that entry will bubble down until the heap-order property is satisfied
 ![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/HeapRemoval.JPG)
 
-Implementaion Timeline:
+# Implementaion Timeline:
 * Day 1: Setup all necessary Node modules, including getting webpack up and running and Easel.js installed. Create webpack.config.js as well as package.json. Write a basic entry file and the bare bones of all 3 scripts outlined above. Learn the basics of Easel.js. Goals for the day:
 
 Get a green bundle with webpack
