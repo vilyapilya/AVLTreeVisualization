@@ -58,20 +58,20 @@ Learn enough Easel.js to render an object to the Canvas element
 * Add finding functionality. 
 
 # Binary Heap
-##Background
+## Background
 A binary heap is a heap data structure that takes the form of a binary tree. Binary heaps are a common way of implementing priority queues. The binary heap was introduced by J. W. J. Williams in 1964, as a data structure for the heapsort.
 A binary heap is defined as a binary tree with two additional constraints:
 Shape property: a binary heap is a complete binary tree; that is, all levels of the tree, except possibly the last one (deepest) are fully filled, and, if the last level of the tree is not complete, the nodes of that level are filled from left to right.
 Heap property: the key stored in each node is either greater than or equal to (≥) or less than or equal to (≤) the keys in the node's children, according to some total order.
-
+![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/heapRepresentaion.JPG)
 The UI for this part of the application will look same as for the AVL tree. 
-###Insertion
+### Insertion
 Insertion a number to a heap will take the following steps:
 1. The number will be inserted into the first available spot starting from the left.
 2. The entry will bubble up until the heap-order property is satisfied (No child has a key less than its parent node)
-
-###Deletion
+![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/heapInsertion.JPG)
+### Deletion
 1. Remove the root of the tree.
 2. The hole will be filled by the last entry in the tree
 3. Then that entry will bubble down until the heap-order property is satisfied
-
+![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/HeapRemoval.JPG)
