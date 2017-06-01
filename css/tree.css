@@ -1,0 +1,16 @@
+input{
+  position: fixed;
+  background-color: #80a1ad;
+  bottom: 100px;
+  left: 450px;
+  height: 50px;
+  width: 450px;
+  border-radius: 100px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 5px solid white;
+  font-size: 50px;
+  color: white;
+  text-align: center;
+}

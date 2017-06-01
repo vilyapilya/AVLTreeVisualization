@@ -44,7 +44,9 @@ In addition to the webpack entry file, there will be three scripts involved in t
 
 display.js: this script will handle the logic for creating and updating the necessary Easel.js elements and rendering them to the DOM.''
 
-tree.js: this script will handle the users' iput and the tree rotations
+toggle.js: this script will switch between the avl tree and binary heap.
+avl.js: this script will handle the users' iput and the tree rotations
+heap.js: this script will handle the binary heap logic
 
 ## Bonus:
 * Add finding functionality.
