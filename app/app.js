@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function(){
       animationDisable = false;
       input.value = "";
       input.style.display = "none";
-      console.log(tree);
     }
   }
 
