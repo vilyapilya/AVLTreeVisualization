@@ -16,9 +16,6 @@ Users insert a number into the input field. If they insert the number for the fi
 ![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/firstThreeCases.JPG)
 ![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/forthCase.JPG)
 
-### Deletion
-User will be able to delete a number from the tree by hovering and clicking on a cross symbol which will appear on hover. The tree will behave according the same rules as for insertion.
-
 ### Examples
 ![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/insertion.JPG)
 ![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/deletion.JPG)
@@ -28,12 +25,10 @@ The visualization will have the following functionality:
 * Accept users' input. (a number)
 * Place the number to the node which is determined by the algorithm.
 * Movements are smoothly animated so users can track how the tree rotation
-* Delete a number from the tree
 * Rotate the tree after deletion and animate the rotation in the same manner
 
 ## Wireframes
 This app will consist of a single screen with the input field and the tree when numbers are added, and navlinks to my Github and LinkedIn.
-The application will also have a reset button which will delete all nodes from the tree.
 
 ## Architecture and Technologies
 * Vanilla JavaScript
@@ -51,39 +46,8 @@ tree.js: defines the tree itself, its methods, rotations.
 point.js: this to define an object for coordinates.
 
 css folder:
-three.css: styles the input field
+tree.css: styles the input field
 
 ## Bonus:
+* Add delete
 * Add finding functionality.
-
-# Binary Heap
-## Background
-A binary heap is a heap data structure that takes the form of a binary tree. Binary heaps are a common way of implementing priority queues. The binary heap was introduced by J. W. J. Williams in 1964, as a data structure for the heapsort.
-A binary heap is defined as a binary tree with two additional constraints:
-Shape property: a binary heap is a complete binary tree; that is, all levels of the tree, except possibly the last one (deepest) are fully filled, and, if the last level of the tree is not complete, the nodes of that level are filled from left to right.
-Heap property: the key stored in each node is either greater than or equal to (≥) or less than or equal to (≤) the keys in the node's children, according to some total order.
-![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/heapRepresentaion.JPG)
-The UI for this part of the application will look same as for the AVL tree.
-### Insertion
-Insertion a number to a heap will take the following steps:
-1. The number will be inserted into the first available spot starting from the left.
-2. The entry will bubble up until the heap-order property is satisfied (No child has a key less than its parent node)
-![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/heapInsertion.JPG)
-### Deletion
-1. Remove the root of the tree.
-2. The hole will be filled by the last entry in the tree
-3. Then that entry will bubble down until the heap-order property is satisfied
-![alt text](https://github.com/vilyapilya/JavaScriptProjectProposal/blob/master/images/HeapRemoval.JPG)
-
-# Implementaion Timeline:
-* Day 1: Setup all necessary Node modules, including getting webpack up and running and Easel.js installed. Create webpack.config.js as well as package.json. Write a basic entry file and the bare bones of all 3 scripts outlined above. Learn the basics of Easel.js. Goals for the day:
-
-Get a green bundle with webpack
-Learn enough Easel.js to render an object to the Canvas element
-
-* Day 2: Write AVL tree and Binary Heap logic Goals for the day:
-Get insertion and deletion work in console for both data structures.
-
-* Day 3: Integrade users' input with the written algorithm and write animation for the nodes.
-Goal for the day:
-Animate insertion and deletion process for both data structures.
