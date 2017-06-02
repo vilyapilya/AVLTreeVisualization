@@ -44,10 +44,12 @@ function drawNode(node, tree){
   ctx.beginPath();
 
   ctx.lineWidth="2";
-  ctx.strokeStyle = "#c19cd3";
+  // ctx.strokeStyle = "#c19cd3";
+  ctx.strokeStyle = "white";
   ctx.arc(node.oldP.x, node.oldP.y, 20, 0, 2*Math.PI);
   //ctx.arc(node.newP.x, node.newP.y, 20, 0, 2*Math.PI);
   ctx.fillStyle = "#c19cd3";
+
   ctx.fill();
 
   ctx.fillStyle="white";

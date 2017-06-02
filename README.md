@@ -42,11 +42,16 @@ The application will also have a reset button which will delete all nodes from t
 
 In addition to the webpack entry file, there will be three scripts involved in this project:
 
-display.js: this script will handle the logic for creating and updating the necessary Easel.js elements and rendering them to the DOM.''
+app folder:
+display.js: this script will handle the logic for creating and updating the necessary
+app.js: this is the entry file.
+display.js: this file is resposible for drawing the elements on the screen
+node.js: this script defines nodes for the AVL tree.
+tree.js: defines the tree itself, its methods, rotations.
+point.js: this to define an object for coordinates.
 
-toggle.js: this script will switch between the avl tree and binary heap.
-avl.js: this script will handle the users' iput and the tree rotations
-heap.js: this script will handle the binary heap logic
+css folder:
+three.css: styles the input field
 
 ## Bonus:
 * Add finding functionality.
