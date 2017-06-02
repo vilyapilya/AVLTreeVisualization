@@ -339,13 +339,16 @@ class Tree {
 
     if (value === node.value) {
       // duplicates are not allowed.
+      dupWarning.style.display = "block";
       return node;
     } else if (value < node.value) {
+      dupWarning.style.display = "none";
       node.left = this.insertWithBalancing(node.left, node, value);
       node.left.parent = node;
       node.h = this.calculateHeight(node);
     } else {
       // value > node.value
+      dupWarning.style.display = "none";
       node.right = this.insertWithBalancing(node.right, node, value);
       node.right.parent = node;
       node.h = this.calculateHeight(node);
@@ -524,6 +527,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 document.addEventListener("DOMContentLoaded", function () {
   var input = document.getElementsByTagName("input")[0];
+  numbersWarning.style.display = "none";
+  dupWarning.style.display = "none";
   var usersInput = "";
   const tree = new __WEBPACK_IMPORTED_MODULE_1__tree__["a" /* default */]();
   var animationDisable = false;
@@ -531,10 +536,11 @@ document.addEventListener("DOMContentLoaded", function () {
   input.onchange = function () {
     usersInput = parseInt(input.value, 10);
     if (isNaN(usersInput)) {
-      alert("you have to type a number!");
+      numbersWarning.style.display = "block";
       input.value = "";
       usersInput = "";
     } else {
+      numbersWarning.style.display = "none";
       animationDisable = true;
       tree.insert(usersInput);
       animationDisable = false;

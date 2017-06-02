@@ -4,7 +4,7 @@ body{
 input{
   position: fixed;
   background-color: #80a1ad;
-  bottom: 100px;
+  bottom: 90px;
   left: 450px;
   height: 50px;
   width: 450px;
@@ -20,7 +20,29 @@ input{
 
 #title{
   position: fixed;
-  bottom: 20px;
-  left: 600px;
+  bottom: 0px;
+  margin-bottom: 0px;
+  left: 580px;
   color: white;
+  font-size: 55px;
+  font-family: 'Chewy';
+}
+
+#numbersWarning{
+  position: fixed;
+  bottom: 150px;
+  margin-bottom: 0px;
+  left: 580px;
+  color: pink;
+  font-size: 30px;
+  font-family: 'Ek Mukta', sans-serif;
+}
+#dupWarning{
+  position: fixed;
+  bottom: 150px;
+  margin-bottom: 0px;
+  left: 580px;
+  color: pink;
+  font-size: 30px;
+  font-family: 'Ek Mukta', sans-serif;
 }

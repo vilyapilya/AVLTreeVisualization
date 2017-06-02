@@ -4,6 +4,8 @@ import Node from './node';
 
 document.addEventListener("DOMContentLoaded", function(){
   var input = document.getElementsByTagName("input")[0];
+  numbersWarning.style.display = "none";
+  dupWarning.style.display = "none";
   var usersInput = "";
   const tree = new Tree();
   var animationDisable = false;
@@ -11,10 +13,11 @@ document.addEventListener("DOMContentLoaded", function(){
   input.onchange = function(){
     usersInput = parseInt(input.value, 10);
     if(isNaN(usersInput)){
-      alert("you have to type a number!");
+      numbersWarning.style.display = "block";
       input.value = "";
       usersInput= "";
     }else {
+      numbersWarning.style.display = "none";
       animationDisable = true;
       tree.insert(usersInput);
       animationDisable = false;
@@ -23,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function(){
       console.log(tree);
     }
   }
-  
+
   var gcount = 0;
   setInterval(function(){
     if(!animationDisable) {

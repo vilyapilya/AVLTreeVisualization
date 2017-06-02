@@ -67,12 +67,15 @@ class Tree{
 
     if(value === node.value) {
       // duplicates are not allowed.
+      dupWarning.style.display = "block";
       return node;
     } else if(value < node.value) {
+      dupWarning.style.display = "none";
       node.left = this.insertWithBalancing(node.left, node, value);
       node.left.parent = node;
       node.h = this.calculateHeight(node);
     } else {  // value > node.value
+      dupWarning.style.display = "none";
       node.right = this.insertWithBalancing(node.right, node, value);
       node.right.parent = node;
       node.h = this.calculateHeight(node);
