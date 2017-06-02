@@ -1,17 +1,17 @@
 import Point from './point';
+
 class Node{
-  constructor(value, parent, left, right, x, y, h){
+  constructor(value, parent){
     this.value = value;
-    this.left = left;
-    this.right = right;
     this.parent = parent;
-    this.oldP = new Point(x, y);
-    this.newP = new Point(x, y);
+    this.left = null;
+    this.right = null;
+    this.oldP = new Point(50, 50);
+    this.newP = new Point(50, 50);
     this.stepX = 0;
     this.stepY = 0;
-    this.h = h;
+    this.h = 1; // default hight is 1 since added to the bottom
   }
-
 }
 
 export default Node;

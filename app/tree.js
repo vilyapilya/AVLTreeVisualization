@@ -10,122 +10,176 @@ import {drawNode,
 class Tree{
   constructor(){
     this.root = null;
-    this.helperInsert = this.helperInsert.bind(this);
+    //this.helperInsert = this.helperInsert.bind(this);
+    this.insertWithBalancing = this.insertWithBalancing.bind(this);
+    this.insert = this.insert.bind(this);
+    this.animateAllNodes = this.animateAllNodes.bind(this);
+    this.animateNode = this.animateNode.bind(this);
     this.array = []
     this.startX = 700;
     this.startY = 60;
     this.deltaX = 30;
     this.deltaY = 60;
-    this.numSteps = 10;
+    this.numSteps = 100;
     this.stepCount = 0;
   }
 
-  insert(value){
-    if(this.root === null){
-      this.root = new Node(value, null, null, null, this.startX, this.startY, 0);
-      this.array.push(this.root);
-    }else{
-      var result = this.helperInsert(value, this.root);
-      var node = result[0];
-      var enteredNode = result[1];
-      if(node === 0){
-        return 0;
-      }
-      var unBalancedNode = this.findUnbalanced(node);
+  getHeight(node) {
+    if(!node){
+      return 0;
     }
-    if(unBalancedNode){
-      debugger
-      this.rotate(unBalancedNode, enteredNode.value);
+    return node.h;
+  }
+
+  calculateHeight(node) {
+    if(!node){
+      return 0;
     }
-    this.height(this.root);
-    // this.updateNewP(this.root);
+    var b = this.balanceFactor(node);
+    var h = 0;
+    if(b >= 0) {  // left subtree is higher ot the same as right one.
+      h = this.getHeight(node.left) + 1;
+    } else {
+      h = this.getHeight(node.right) + 1;
+    }
+    return h;
+  }
+
+  balanceFactor(node) {
+    if(!node){
+      return 0;
+    }
+    return (this.getHeight(node.left) - this.getHeight(node.right));
+  }
+
+  insert(value) {
+    this.root = this.insertWithBalancing(this.root, null, value);
+    this.updateNewPoints(this.root);
     this.stepCount = 0;
   }
 
-  findUnbalanced(node){
-    var currentPar = node.parent;
-    while(currentPar){
-      debugger
-      if(Math.abs(this.isBalanced(currentPar)) > 1){
-        return currentPar;
+  insertWithBalancing(node, parent, value) {
+    if(!node) {
+      var newnode = new Node(value, null);
+      newnode.parent = parent;
+      return newnode;
+    }
+
+    if(value === node.value) {
+      // duplicates are not allowed.
+      return node;
+    } else if(value < node.value) {
+      node.left = this.insertWithBalancing(node.left, node, value);
+      node.left.parent = node;
+      node.h = this.calculateHeight(node);
+    } else {  // value > node.value
+      node.right = this.insertWithBalancing(node.right, node, value);
+      node.right.parent = node;
+      node.h = this.calculateHeight(node);
+    }
+
+    return this.rotateIfUnbalanced(node, value);
+    //return node;
+  }
+
+  rotateIfUnbalanced(node, inserted_val) {
+    var b = this.balanceFactor(node);
+
+    // Left Left
+    if (b > 1 && inserted_val < node.left.value) {
+      return this.rotateRight(node);
+    }
+    // Left Right
+    if (b > 1 && inserted_val > node.left.value) {
+      node.left = this.rotateLeft(node.left);
+      return this.rotateRight(node);
+    }
+    // Right Right
+    if (b < -1 && inserted_val > node.right.value) {
+      return this.rotateLeft(node);
+    }
+    // Right Left
+    if (b < -1 && inserted_val < node.right.value) {
+      node.right = this.rotateRight(node.right);
+      return this.rotateLeft(node);
+    }
+
+    return node;
+  }
+
+
+  rotateLeft(node) {
+    if(!node) {
+      return node;
+    }
+    var n1 = node.right;
+    var n2 = n1.left;
+/*
+    // Update of the rotated subtree parent is done in insertWithBalancing()
+    if(node.parent ) {
+    	if(node === node.parent.left) {
+    		node.parent.left = n1;
+      } else {
+        node.parent.right = n1;
       }
-      currentPar = currentPar.parent;
     }
+*/
+    n1.left = node;
+
+    n1.parent = node.parent;
+    node.parent = n1;
+
+    node.right = n2;
+    if(n2) {
+      n2.parent = node;
+    }
+
+    node.h = this.calculateHeight(node);
+    n1.h = this.calculateHeight(n1);
+    return n1;
   }
 
-  rotate(node, value){
-    //left-left case
-    if(node.parent && this.isBalanced(this.root) > 1 && value < node.value){
-      this.rightRotate(node.parent);
-      // leftLeftCase(this.array);
-    }//right-right case
-    else if(node.parent && this.isBalanced(this.root) < -1 && value > node.value){
-      this.leftRotate(node.parent);
-      // rightRightCase(this.array);
-    }//left-right case
-    else if(node.parent && this.isBalanced(this.root) > 1 && value > node.value){
-      this.leftRotate(node);
-      this.rightRotate(node.parent.parent);
-      // leftRightCase(this.array);
-    }//right-left case
-    else if(node.parent && this.isBalanced(this.root) < -1 && value < node.value){
-      this.rightRotate(node);
-      this.leftRotate(node.parent.parent);
-      // leftLeftCase(this.array);
+  rotateRight(node) {
+    if(!node) {
+      return node;
     }
+    var n1 = node.left;
+    var n2 = n1.right;
+/*
+    // Update of the rotated subtree parent is done in insertWithBalancing()
+    if(node.parent ) {
+    	if(node === node.parent.left) {
+    		node.parent.left = n1;
+      } else {
+        node.parent.right = n1;
+      }
+    }
+*/
+    n1.right = node;
+
+    n1.parent = node.parent;
+    node.parent = n1;
+
+    node.left = n2;
+    if(n2) {
+      n2.parent = node;
+    }
+
+    node.h = this.calculateHeight(node);
+    n1.h = this.calculateHeight(n1);
+    return n1;
   }
 
-  height(node){
+
+  updateNewPoints(node){
     if(!node){
       return 0;
-    }else{
-      var lHeight = this.height(node.left);
-      var rHeight = this.height(node.right);
-
-      if(lHeight > rHeight){
-        node.h = lHeight + 1;
-        return (lHeight + 1);
-      }else {
-        node.h = rHeight + 1;
-        return (rHeight + 1);
-      }
-    }
-  }
-
-  helperInsert(value, node){
-    if(node === null){
-      return 0;
-    }
-    if(value === node.value){
-      console.log("node esidkj");
-      return 0;
-    }else if(value > node.value){
-      if(node.right === null){
-        node.right = new Node(value, node, null, null, node.newP.x + this.deltaX, node.newP.y + this.deltaY, null);
-        return [node, node.right];
-      }else {
-        return this.helperInsert(value, node.right);
-      }
-    }
-    else {
-      if(node.left === null){
-        node.left = new Node(value, node, null, null, node.newP.x - this.deltaX, node.newP.y + this.deltaY, null);
-        return [node, node.left];
-      }else {
-        return this.helperInsert(value, node.left);
-      }
     }
 
-  }
-
-  updateNewP(node){
-    if(!node){
-      return 0;
-    }
-    if(!node.parent){
+    if(!node.parent) {
       node.newP.x = this.startX;
       node.newP.y = this.startY;
-    }else {
+    } else {
       var offset = this.deltaX + (node.h - 1) *(node.h - 1)* (this.deltaX+1);
       if(node.parent.right === node){
         node.newP.x = node.parent.newP.x + offset;
@@ -134,60 +188,12 @@ class Tree{
       }
       node.newP.y = node.parent.newP.y + this.deltaY;
     }
-    // if(node.newP.x !== node.oldP.x){
-    //   node.stepX = 20;
-    // }
-    // node.stepY = 0;
-    // node.stepX = (node.newP.x - node.oldP.x) / this.numSteps;
-    // node.stepY = (node.newP.y - node.oldP.y) / this.numSteps;
-    this.updateNewP(node.left);
-    this.updateNewP(node.right);
-  }
 
-  isBalanced(node){
-    var leftLen = 0;
-    var rightLen = 0;
-    if(node.left){
-      leftLen = this.height(node.left);
-    }
-    if(node.right){
-      rightLen = this.height(node.right);
-    }
-    return (leftLen - rightLen);
-  }
+    node.stepX = (node.newP.x - node.oldP.x) / this.numSteps;
+    node.stepY = (node.newP.y - node.oldP.y) / this.numSteps;
 
-  rightRotate(node){
-    var formerLeft = node.left;
-    if(node.parent && node.parent.left && node.parent.left === node){
-      node.parent.left = formerLeft;
-    }else if(node.parent){
-      node.parent.right = formerLeft;
-    }
-    formerLeft.parent = node.parent;
-    node.parent = node.left;
-    node.left = null;
-    formerLeft.right = node;
-    if(node === this.root){
-      this.root = formerLeft;
-    }
-    return formerLeft;
-  }
-
-  leftRotate(node){
-    var formerRight = node.right;
-    formerRight.parent = node.parent;
-    if(node.parent && node.parent.left && node.parent.left === node){
-      node.parent.left = formerRight;
-    }else if(node.parent){
-      node.parent.right = formerRight;
-    }
-    node.parent = node.right;
-    node.right = null;
-    formerRight.left = node;
-    if(node === this.root){
-      this.root = formerRight;
-    }
-    return formerRight;
+    this.updateNewPoints(node.left);
+    this.updateNewPoints(node.right);
   }
 
 
@@ -205,7 +211,7 @@ class Tree{
     }
 
     this.animateNode(node.left);
-    this.animateNode(node.righ);
+    this.animateNode(node.right);
   }
 
   animateAllNodes() {
@@ -213,7 +219,6 @@ class Tree{
     if(this.stepCount < this.numSteps+2){
       this.stepCount += 1;
     }
-
   }
 
 }

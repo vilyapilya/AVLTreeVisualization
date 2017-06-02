@@ -4,6 +4,7 @@ export function drawTree(tree){
   if(!tree){
     return 0;
   }
+
   const canvasEl = document.getElementsByTagName("canvas")[0];
   const ctx = canvasEl.getContext("2d");
   canvasEl.width = 1400;
@@ -13,7 +14,7 @@ export function drawTree(tree){
   ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
   ctx.stroke();
   drawNode(tree.root, tree);
-  tree.animateAllNodes(tree);
+  tree.animateAllNodes();
   if(tree.stepCount > tree.numSteps){
     return 0;
   }else{
@@ -25,29 +26,42 @@ function drawNode(node, tree){
   if(!node){
     return 0;
   }
+
   const canvasEl = document.getElementsByTagName("canvas")[0];
   const ctx = canvasEl.getContext("2d");
 
   ctx.beginPath();
-  //ctx.arc(node.oldP.x, node.oldP.y, 20, 0, 2*Math.PI);
-  ctx.arc(node.newP.x, node.newP.y, 20, 0, 2*Math.PI);
+  if(node.parent){
+    ctx.strokeStyle = "#c19cd3";
+    ctx.lineWidth="3";
+    //ctx.moveTo(node.newP.x, node.newP.y);
+    //ctx.lineTo(node.parent.newP.x, node.parent.newP.y);
+    ctx.moveTo(node.oldP.x, node.oldP.y);
+    ctx.lineTo(node.parent.oldP.x, node.parent.oldP.y+6);
+  }
+  ctx.stroke();
+
+  ctx.beginPath();
+
+  ctx.lineWidth="2";
+  ctx.strokeStyle = "#c19cd3";
+  ctx.arc(node.oldP.x, node.oldP.y, 20, 0, 2*Math.PI);
+  //ctx.arc(node.newP.x, node.newP.y, 20, 0, 2*Math.PI);
   ctx.fillStyle = "#c19cd3";
   ctx.fill();
+
   ctx.fillStyle="white";
-  ctx.font="25px Arial";
+  ctx.font="20px Arial";
   ctx.textAlign = "center";
-  //ctx.fillText(node.value, node.oldP.x, node.oldP.y);
-  ctx.fillText(node.value, node.newP.x, node.newP.y);
-  //ctx.fillText(tree.stepCount , node.oldP.x, node.oldP.y+20);
+  ctx.fillText(node.value, node.oldP.x, node.oldP.y+4);
+  //ctx.fillText(node.value, node.newP.x, node.newP.y);
 
-
-  if(node.parent){
-    ctx.moveTo(node.newP.x, node.newP.y);
-    ctx.lineTo(node.parent.newP.x, node.parent.newP.y);
-    ctx.strokeStyle = "#c19cd3";
-  }
+  //ctx.font="18px Arial";
+  //ctx.fillText(node.h , node.oldP.x, node.oldP.y+15);
+  //ctx.fillText(node.h , node.newP.x, node.newP.y+15);
 
   ctx.stroke();
+
   drawNode(node.left, tree);
   drawNode(node.right, tree);
 
