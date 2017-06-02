@@ -32,7 +32,7 @@ This app will consist of a single screen with the input field and the tree when 
 
 ## Architecture and Technologies
 * Vanilla JavaScript
-* Easel.js with HTML5 Canvas
+* HTML5 Canvas
 * Webpack to bundle and serve up various scripts.
 
 In addition to the webpack entry file, there will be three scripts involved in this project:
