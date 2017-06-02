@@ -1,3 +1,6 @@
+body{
+  position: fixed;
+}
 input{
   position: fixed;
   background-color: #80a1ad;
@@ -13,4 +16,11 @@ input{
   font-size: 50px;
   color: white;
   text-align: center;
+}
+
+#title{
+  position: fixed;
+  bottom: 20px;
+  left: 600px;
+  color: white;
 }
