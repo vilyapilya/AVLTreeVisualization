@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -85,7 +85,6 @@ function drawTree(tree) {
   canvasEl.width = 1400;
   canvasEl.height = 800;
   ctx.fillStyle = "#80a1ad";
-
   ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
   ctx.stroke();
   drawNode(tree.root, tree);
@@ -123,6 +122,7 @@ function drawNode(node, tree) {
   ctx.strokeStyle = "white";
   ctx.arc(node.oldP.x, node.oldP.y, 20, 0, 2 * Math.PI);
   //ctx.arc(node.newP.x, node.newP.y, 20, 0, 2*Math.PI);
+
   ctx.fillStyle = "#c19cd3";
 
   ctx.fill();
@@ -247,32 +247,57 @@ function drawNode(node, tree) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__point__ = __webpack_require__(3);
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__display__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tree__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node__ = __webpack_require__(3);
 
 
-class Node {
-  constructor(value, parent) {
-    this.value = value;
-    this.parent = parent;
-    this.left = null;
-    this.right = null;
-    this.oldP = new __WEBPACK_IMPORTED_MODULE_0__point__["a" /* default */](50, 50);
-    this.newP = new __WEBPACK_IMPORTED_MODULE_0__point__["a" /* default */](50, 50);
-    this.stepX = 0;
-    this.stepY = 0;
-    this.h = 1; // default hight is 1 since added to the bottom
-  }
-}
 
-/* harmony default export */ __webpack_exports__["a"] = (Node);
+
+document.addEventListener("DOMContentLoaded", function () {
+  var input = document.getElementsByTagName("input")[0];
+  numbersWarning.style.display = "none";
+  dupWarning.style.display = "none";
+  var usersInput = "";
+  const tree = new __WEBPACK_IMPORTED_MODULE_1__tree__["a" /* default */]();
+  var animationDisable = false;
+
+  input.onchange = function () {
+    usersInput = parseInt(input.value, 10);
+    if (isNaN(usersInput)) {
+      numbersWarning.style.display = "block";
+      input.value = "";
+      usersInput = "";
+    } else {
+      numbersWarning.style.display = "none";
+      animationDisable = true;
+      tree.insert(usersInput);
+      animationDisable = false;
+      input.value = "";
+      input.style.display = "none";
+    }
+  };
+
+  var gcount = 0;
+  setInterval(function () {
+    if (!animationDisable) {
+      var animationInProcess = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__display__["a" /* drawTree */])(tree);
+      if (!animationInProcess) {
+        input.style.display = "block";
+        input.focus();
+      }
+    }
+  }, 20);
+});
 
 /***/ }),
 /* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__point__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__point__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__display__ = __webpack_require__(0);
 
 
@@ -503,6 +528,30 @@ class Tree {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__point__ = __webpack_require__(4);
+
+
+class Node {
+  constructor(value, parent) {
+    this.value = value;
+    this.parent = parent;
+    this.left = null;
+    this.right = null;
+    this.oldP = new __WEBPACK_IMPORTED_MODULE_0__point__["a" /* default */](50, 50);
+    this.newP = new __WEBPACK_IMPORTED_MODULE_0__point__["a" /* default */](50, 50);
+    this.stepX = 0;
+    this.stepY = 0;
+    this.h = 1; // default hight is 1 since added to the bottom
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Node);
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 class Point {
   constructor(x, y) {
     this.x = x;
@@ -511,55 +560,6 @@ class Point {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (Point);
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__display__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tree__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node__ = __webpack_require__(1);
-
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  var input = document.getElementsByTagName("input")[0];
-  numbersWarning.style.display = "none";
-  dupWarning.style.display = "none";
-  var usersInput = "";
-  const tree = new __WEBPACK_IMPORTED_MODULE_1__tree__["a" /* default */]();
-  var animationDisable = false;
-
-  input.onchange = function () {
-    usersInput = parseInt(input.value, 10);
-    if (isNaN(usersInput)) {
-      numbersWarning.style.display = "block";
-      input.value = "";
-      usersInput = "";
-    } else {
-      numbersWarning.style.display = "none";
-      animationDisable = true;
-      tree.insert(usersInput);
-      animationDisable = false;
-      input.value = "";
-      input.style.display = "none";
-    }
-  };
-
-  var gcount = 0;
-  setInterval(function () {
-    if (!animationDisable) {
-      var animationInProcess = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__display__["a" /* drawTree */])(tree);
-      if (!animationInProcess) {
-        input.style.display = "block";
-        input.focus();
-      }
-    }
-  }, 20);
-});
 
 /***/ })
 /******/ ]);

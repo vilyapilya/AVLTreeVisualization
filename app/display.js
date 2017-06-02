@@ -10,7 +10,6 @@ export function drawTree(tree){
   canvasEl.width = 1400;
   canvasEl.height = 800;
   ctx.fillStyle = "#80a1ad";
-
   ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
   ctx.stroke();
   drawNode(tree.root, tree);
@@ -48,8 +47,9 @@ function drawNode(node, tree){
   ctx.strokeStyle = "white";
   ctx.arc(node.oldP.x, node.oldP.y, 20, 0, 2*Math.PI);
   //ctx.arc(node.newP.x, node.newP.y, 20, 0, 2*Math.PI);
-  ctx.fillStyle = "#c19cd3";
 
+  ctx.fillStyle = "#c19cd3";
+  
   ctx.fill();
 
   ctx.fillStyle="white";
