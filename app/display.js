@@ -9,7 +9,7 @@ export function drawTree(tree){
   const ctx = canvasEl.getContext("2d");
   canvasEl.width = 1400;
   canvasEl.height = 800;
-  ctx.fillStyle = "#80a1ad";
+  ctx.fillStyle = "#1c0223";
   ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
   ctx.stroke();
   drawNode(tree.root, tree);
@@ -31,12 +31,12 @@ function drawNode(node, tree){
 
   ctx.beginPath();
   if(node.parent){
-    ctx.strokeStyle = "#c19cd3";
+    ctx.strokeStyle = "white";
     ctx.lineWidth="3";
     //ctx.moveTo(node.newP.x, node.newP.y);
     //ctx.lineTo(node.parent.newP.x, node.parent.newP.y);
     ctx.moveTo(node.oldP.x, node.oldP.y);
-    ctx.lineTo(node.parent.oldP.x, node.parent.oldP.y+6);
+    ctx.lineTo(node.parent.oldP.x, node.parent.oldP.y+20);
   }
   ctx.stroke();
 
@@ -48,8 +48,8 @@ function drawNode(node, tree){
   ctx.arc(node.oldP.x, node.oldP.y, 20, 0, 2*Math.PI);
   //ctx.arc(node.newP.x, node.newP.y, 20, 0, 2*Math.PI);
 
-  ctx.fillStyle = "#c19cd3";
-  
+  ctx.fillStyle = "#1c0223";
+
   ctx.fill();
 
   ctx.fillStyle="white";
