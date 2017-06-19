@@ -7,8 +7,12 @@ export function drawTree(tree){
 
   const canvasEl = document.getElementsByTagName("canvas")[0];
   const ctx = canvasEl.getContext("2d");
-  canvasEl.width = 1400;
-  canvasEl.height = 800;
+
+  var w = window.window.innerWidth;
+  var h = window.innerHeight;
+
+  canvasEl.width = w;
+  canvasEl.height = h;
   ctx.fillStyle = "#1c0223";
   ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
   ctx.stroke();
